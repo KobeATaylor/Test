@@ -128,12 +128,6 @@ function statement(invoice, plays)
     let totalAmount = 0;
     let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
-    const format = new Intl.NumberFormat('en-US', 
-    {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    }).format;
     for (let aPerformance of invoice.performances) 
         {
       volumeCredits += volumeCreditsFor(aPerformance);
@@ -148,6 +142,15 @@ function statement(invoice, plays)
     return result;
   }
   
+function format(aNumber) {
+  return new Intl.NumberFormat('en-US',
+    {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    }).format(aNumber);
+}
+
 // you can either run the statement function directly from this file or export it, and in another file require and run it
 // let statement = require("./statement_v1")
 // let stmt = statement(invoice, plays)
