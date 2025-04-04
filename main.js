@@ -132,12 +132,12 @@ function statement(invoice, plays)
         {
       volumeCredits += volumeCreditsFor(aPerformance);
       // print line for this order
-      result += ` ${playFor(aPerformance).name}: ${usd(amountFor(aPerformance) / 100)} (${
+      result += ` ${playFor(aPerformance).name}: ${usd(amountFor(aPerformance))} (${
         aPerformance.audience
       } seats)\n`;
       totalAmount += amountFor(aPerformance);
     }
-    result += `Amount owed is ${usd(totalAmount / 100)}\n`;
+    result += `Amount owed is ${usd(totalAmount)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
     return result;
   }
@@ -148,7 +148,7 @@ function usd(aNumber) {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2,
-    }).format(aNumber);
+    }).format(aNumber/100);
 }
 
 // you can either run the statement function directly from this file or export it, and in another file require and run it
