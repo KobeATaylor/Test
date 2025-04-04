@@ -94,6 +94,12 @@ let invoice = require("./invoice.json")
 //    ]
 // }
 
+function playFor(aPerformance) 
+{
+  return plays[aPerformance.playID]
+}
+  
+
 function amountFor(aPerformance,play)
 {
   let thisAmount = 0;
@@ -130,7 +136,7 @@ function statement(invoice, plays)
     }).format;
     for (let aPerformance of invoice.performances) 
         {
-      const play = plays[aPerformance.playID];
+      const play = playFor(aPerformance);
       let thisAmount = amountFor(aPerformance,play);
       volumeCredits += Math.max(aPerformance.audience - 30, 0);
       // add extra credit for every ten comedy attendees
